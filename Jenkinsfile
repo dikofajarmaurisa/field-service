@@ -51,7 +51,7 @@ pipeline {
     stage('Checkout Code') {
       steps {
         script {
-          def repoUrl = 'https://github.com/Mini-Soccer-Project/field-service.git'
+          def repoUrl = 'https://github.com/dikofajarmaurisa/field-service.git'
 
           checkout([$class: 'GitSCM',
             branches: [
@@ -102,7 +102,7 @@ pipeline {
           sh """
           git config --global user.name 'Jenkins CI'
           git config --global user.email 'jenkins@company.com'
-          git remote set-url origin https://${GITHUB_CREDENTIALS_USR}:${GITHUB_CREDENTIALS_PSW}@github.com/Mini-Soccer-Project/field-service.git
+          git remote set-url origin https://${GITHUB_CREDENTIALS_USR}:${GITHUB_CREDENTIALS_PSW}@github.com/dikofajarmaurisa/field-service.git
           git add docker-compose.yaml
           git commit -m 'Update image version to ${TARGET_BRANCH}-${currentBuild.number} [skip ci]' || echo 'No changes to commit'
           git pull origin ${TARGET_BRANCH} --rebase
@@ -124,7 +124,7 @@ pipeline {
                 git pull origin "${TARGET_BRANCH}"
             else
                 echo "Directory does not exist. Cloning repository."
-                git clone -b "${TARGET_BRANCH}" git@github.com:Mini-Soccer-Project/field-service.git "${targetDir}"
+                git clone -b "${TARGET_BRANCH}" git@github.com:dikofajarmaurisa/field-service.git "${targetDir}"
                 cd "${targetDir}"
             fi
 
